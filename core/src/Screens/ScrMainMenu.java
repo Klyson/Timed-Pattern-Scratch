@@ -6,6 +6,7 @@ import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import Menu.GamGame1;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
@@ -13,8 +14,9 @@ public class ScrMainMenu extends InputAdapter implements Screen {
 
     GamGame1 game;
     private SpriteBatch batch;
-    private boolean isSong1, isExit;
+    private boolean isSong, isExit;
     private BitmapFont font;
+    private String SongChoice = "";
 
     public ScrMainMenu(GamGame1 _game) {
         game = _game;
@@ -26,6 +28,7 @@ public class ScrMainMenu extends InputAdapter implements Screen {
         Gdx.input.setInputProcessor(this);
         font = new BitmapFont();
         Gdx.gl.glClearColor(1, 1, 1, 1);
+        font.setColor(Color.RED);
     }
 
     @Override
@@ -34,12 +37,26 @@ public class ScrMainMenu extends InputAdapter implements Screen {
         batch.begin();
         font.draw(batch, "Press Enter to Play Selected Song", Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 2);
         font.draw(batch, "Press Escape to Exit", Gdx.graphics.getWidth() / 2, 375);
+        font.draw(batch, "Press 1 to select Song One", Gdx.graphics.getWidth() / 2, 150);
+        font.draw(batch, "Press 2 to select Song Two", Gdx.graphics.getWidth() / 2, 100);
+        font.draw(batch, "Press 3 to select Song Three", Gdx.graphics.getWidth() / 2, 50);
+        font.draw(batch, SongChoice, Gdx.graphics.getWidth() / 2, 200);
         batch.end();
-        if (isSong1) {
+        if (isSong /*&& SongChoice.equals("Song One")*/) {
             game.nScreen = 1;
             game.updateState();
             dispose();
-        } else if (isExit) {
+        }
+//        } else if(isSong && SongChoice.equals("Song Two")) {
+//            game.nScreen = other number;
+//            game.updateState();
+//            dispose();
+//        } else if(isSong && SongChoice.equals("Song Three")) {
+//            game.nScreen = other number;
+//            game.updateState();
+//            dispose();
+//        }
+        else if (isExit) {
             Gdx.app.exit();
             dispose();
         }
@@ -67,10 +84,17 @@ public class ScrMainMenu extends InputAdapter implements Screen {
 
     @Override
     public boolean keyDown(int keycode) {
-       if (keycode == Input.Keys.ENTER) {
-           isSong1 = true;
-       } else if (keycode == Input.Keys.ESCAPE) {
-           isExit = true;
-       } return false;
+        if (keycode == Input.Keys.ENTER) {
+            isSong = true;
+        } else if (keycode == Input.Keys.ESCAPE) {
+            isExit = true;
+        } else if (keycode == Input.Keys.NUM_1 || keycode == Input.Keys.NUMPAD_1) {
+            SongChoice = "Song One";
+        } else if (keycode == Input.Keys.NUM_2 || keycode == Input.Keys.NUMPAD_2) {
+            SongChoice = "Song Two";
+        } else if (keycode == Input.Keys.NUM_3 || keycode == Input.Keys.NUMPAD_3) {
+            SongChoice = "Song Three";
+        }
+        return false;
     }
 }

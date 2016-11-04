@@ -3,13 +3,13 @@ package Menu;
 import com.badlogic.gdx.Game;
 import Screens.ScrMainMenu;
 import Screens.ScrSongOne;
-import Screens.ScrEndScreen;
+//import Screens.ScrEndScreen;
 
 public class GamGame1 extends Game {
 
     ScrMainMenu scrMenu;
     ScrSongOne scrSong1;
-    ScrEndScreen scrEnd;
+    //ScrEndScreen scrEnd;
     public int nScreen; // 0 for mainmenu, 1 for song1, 2 for endscreen
 
     public void updateState() {
@@ -17,9 +17,9 @@ public class GamGame1 extends Game {
             setScreen(scrMenu);
         } else if (nScreen == 1) {
             setScreen(scrSong1);
-        } else if (nScreen == 2) {
-            setScreen(scrEnd);
-        }
+        } //else if (nScreen == 2) {
+            //setScreen(scrEnd);
+        //}
     }
 
     @Override
@@ -27,7 +27,7 @@ public class GamGame1 extends Game {
         nScreen = 0;
         scrMenu = new ScrMainMenu(this);
         scrSong1 = new ScrSongOne(this);
-        scrEnd = new ScrEndScreen(this);
+        //scrEnd = new ScrEndScreen(this);
         updateState();
     }
 
