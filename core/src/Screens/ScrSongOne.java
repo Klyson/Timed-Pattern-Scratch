@@ -79,19 +79,15 @@ public class ScrSongOne extends InputAdapter implements Screen {
                 count = 0;
             }
             if (nDelay == 2000 && count == 104) {
-                current = count;
                 count = 0;
                 j++;
             } else if (nDelay == 1500 && count == 79) {
-                current = count;
                 count = 0;
                 j++;
             } else if (nDelay == 1000 && count == 56) {
-                current = count;
                 count = 0;
                 j++;
             } else if (nDelay == 500 && count == 31) {
-                current = count;
                 count = 0;
                 j++;
             }
@@ -115,12 +111,16 @@ public class ScrSongOne extends InputAdapter implements Screen {
             }
             if (j < 5) {
                 nDelay = 2000;
+                current = 104;
             } else if (j >= 5 && j < 9) {
                 nDelay = 1500;
+                 current = 79;
             } else if (j >= 9 && j < 13) {
                 nDelay = 1000;
+                 current = 56;
             } else {
                 nDelay = 500;
+                 current = 31;
             }
             font.draw(batch, String.valueOf(j), 200, YMid * 2);
             font.draw(batch, String.valueOf(good), 250, YMid * 2);
@@ -128,6 +128,7 @@ public class ScrSongOne extends InputAdapter implements Screen {
             font.draw(batch, String.valueOf(count) + " / " + String.valueOf(current), 425, YMid * 2);
             batch.end();
             shapeRenderer.circle(Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 2, 150);
+            shapeRenderer.end();
         } else {
             Gdx.gl.glClearColor(0, 0, 0, 1);
             p = false;
