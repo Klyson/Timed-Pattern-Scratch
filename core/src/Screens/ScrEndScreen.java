@@ -30,11 +30,12 @@ public class ScrEndScreen implements Screen {
     public void render(float delta) {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         batch.begin();
-        font.draw(batch, String.valueOf(song1.j), 200, 250);
-        font.draw(batch, String.valueOf(song1.good), 250, 250);
-        font.draw(batch, String.valueOf(song1.eff) + "%", 300, 250);
+        font.draw(batch, "You clicked correctly " + String.valueOf(song1.good) + " "
+                + "times out of " + String.valueOf(song1.j), 250, song1.YMid + 100);
+            font.draw(batch, "Your efficiency was " + String.valueOf(song1.eff) + "%", 250, song1.YMid);
+            font.draw(batch, "Press Escape to Exit", 250, song1.YMid - 200);
         batch.end();
-        if (Gdx.input.isKeyPressed(51)) {
+        if (Gdx.input.isKeyPressed(27)) {
             Gdx.app.exit();
         }
     }
