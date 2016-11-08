@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import Menu.GamGame1;
 import Screens.ScrSongOne;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -32,11 +33,12 @@ public class ScrEndScreen implements Screen {
         batch.begin();
         font.draw(batch, "You clicked correctly " + String.valueOf(song1.good) + " "
                 + "times out of " + String.valueOf(song1.j), 250, song1.YMid + 100);
-            font.draw(batch, "Your efficiency was " + String.valueOf(song1.eff) + "%", 250, song1.YMid);
-            font.draw(batch, "Press Escape to Exit", 250, song1.YMid - 200);
+        font.draw(batch, "Your efficiency was " + String.valueOf(song1.eff) + "%", 250, song1.YMid);
+        font.draw(batch, "Press Escape to Exit", 250, song1.YMid - 200);
         batch.end();
-        if (Gdx.input.isKeyPressed(27)) {
+        if (Gdx.input.isKeyPressed(Input.Keys.SPACE)) {
             Gdx.app.exit();
+
         }
     }
 

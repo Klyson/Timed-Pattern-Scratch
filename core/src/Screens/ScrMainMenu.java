@@ -46,17 +46,17 @@ public class ScrMainMenu extends InputAdapter implements Screen {
             game.nScreen = 1;
             game.updateState();
             dispose();
-        }
-//        } else if(isSong && SongChoice.equals("Song Two")) {
-//            game.nScreen = other number;
-//            game.updateState();
-//            dispose();
-//        } else if(isSong && SongChoice.equals("Song Three")) {
-//            game.nScreen = other number;
-//            game.updateState();
-//            dispose();
-//        }
+        } //        } else if(isSong && SongChoice.equals("Song Two")) {
+        //            game.nScreen = other number;
+        //            game.updateState();
+        //            dispose();
+        //        } else if(isSong && SongChoice.equals("Song Three")) {
+        //            game.nScreen = other number;
+        //            game.updateState();
+        //            dispose();
+        //        }
         else if (isExit) {
+            System.out.println("gaem sukz");
             Gdx.app.exit();
             dispose();
         }

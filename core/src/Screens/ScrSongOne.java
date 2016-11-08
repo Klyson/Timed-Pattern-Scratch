@@ -15,8 +15,6 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.math.Circle;
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class ScrSongOne extends InputAdapter implements Screen {
 
@@ -27,10 +25,9 @@ public class ScrSongOne extends InputAdapter implements Screen {
     private boolean S, p = true, isExit, k, t;
     private BitmapFont font;
     private Circle circ;
-    Timer timer = new Timer();
     ShapeRenderer shapeRenderer;
     float XMid, YMid, good = 0, eff = 0, nDelay = 2000;
-    int j = 0, count = 0, current = 104;
+    int j = 0, count = 0, max = 150;
     private String[] ars = new String[]{"TL", "BR", "TR", "BR", "TL", "BL", "BR", "TL", "BL", "BL", "BR", "TL", "TR", "BL", "TL", "TR", "TL", "BL"};
 
     public ScrSongOne(GamGame1 _game) {
@@ -78,16 +75,7 @@ public class ScrSongOne extends InputAdapter implements Screen {
             } else if (t) {
                 count = 0;
             }
-            if (nDelay == 2000 && count == 104) {
-                count = 0;
-                j++;
-            } else if (nDelay == 1500 && count == 79) {
-                count = 0;
-                j++;
-            } else if (nDelay == 1000 && count == 56) {
-                count = 0;
-                j++;
-            } else if (nDelay == 500 && count == 31) {
+            if (count == max) {
                 count = 0;
                 j++;
             }
@@ -110,22 +98,18 @@ public class ScrSongOne extends InputAdapter implements Screen {
                 shapeRenderer.setColor(Color.BLUE);
             }
             if (j < 5) {
-                nDelay = 2000;
-                current = 104;
+                max = 150;
             } else if (j >= 5 && j < 9) {
-                nDelay = 1500;
-                 current = 79;
+                max = 100;
             } else if (j >= 9 && j < 13) {
-                nDelay = 1000;
-                 current = 56;
+                max = 71;
             } else {
-                nDelay = 500;
-                 current = 31;
+                max = 43;
             }
             font.draw(batch, String.valueOf(j), 200, YMid * 2);
             font.draw(batch, String.valueOf(good), 250, YMid * 2);
             font.draw(batch, String.valueOf(eff) + "%", 300, YMid * 2);
-            font.draw(batch, String.valueOf(count) + " / " + String.valueOf(current), 425, YMid * 2);
+            font.draw(batch, String.valueOf(count) + " / " + String.valueOf(max), 425, YMid * 2);
             batch.end();
             shapeRenderer.circle(Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 2, 150);
             shapeRenderer.end();
@@ -166,7 +150,7 @@ public class ScrSongOne extends InputAdapter implements Screen {
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
         S = false;
         k = false;
-        t = true;
+        count = 0;
         if (p) {
             if (button == Buttons.LEFT && sprite1.getBoundingRectangle().contains(screenX, screenY)
                     && ars[j].equals("TL")) {
@@ -195,12 +179,6 @@ public class ScrSongOne extends InputAdapter implements Screen {
                 j++;
                 eff = (good / j) * 100;
             }
-            timer.schedule(new TimerTask() { //http://stackoverflow.com/questions/4044726/how-to-set-a-timer-in-java
-                @Override
-                public void run() {
-                    t = false;
-                }
-            }, (int) nDelay);
         }
         return true;
     }
