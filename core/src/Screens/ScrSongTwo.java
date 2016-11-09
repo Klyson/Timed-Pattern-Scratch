@@ -16,7 +16,7 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.math.Circle;
 
-public class ScrSongOne extends InputAdapter implements Screen {
+public class ScrSongTwo extends InputAdapter implements Screen {
 
     GamGame1 game;
     private SpriteBatch batch;
@@ -28,9 +28,9 @@ public class ScrSongOne extends InputAdapter implements Screen {
     ShapeRenderer shapeRenderer;
     float XMid, YMid, good = 0, eff = 0, _good, _eff;
     int j = 0, count = 0, max = 150, _j = 0, _count, _max;
-    private String[] ars = new String[]{"TL", "BR", "TR", "BR", "TL", "BL", "BR", "TL", "BL", "BL", "BR", "TL", "TR", "BL", "TL", "TR", "TL", "BL"};
+    private String[] ars = new String[]{"BR", "BL", "BR", "TL", "TR", "TL", "BL", "BR", "TR", "TL", "BR", "TR", "TL", "BR", "BL", "BR"};
 
-    public ScrSongOne(GamGame1 _game) {
+    public ScrSongTwo(GamGame1 _game) {
         this.game = _game;
     }
 
@@ -70,6 +70,7 @@ public class ScrSongOne extends InputAdapter implements Screen {
     public void render(float delta) {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         if (j < ars.length && !pause) {
+            p = true;
             if (_j != 0) {
                 j = _j;
                 count = _count;
@@ -120,7 +121,7 @@ public class ScrSongOne extends InputAdapter implements Screen {
             batch.end();
             shapeRenderer.circle(Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 2, 150);
             shapeRenderer.end();
-        } else {
+        } else if (j >= ars.length) {
             Gdx.gl.glClearColor(0, 0, 0, 1);
             p = false;
 //            game.nScreen = 1;
@@ -134,7 +135,7 @@ public class ScrSongOne extends InputAdapter implements Screen {
             if (isExit) {
                 Gdx.app.exit();
             }
-        } 
+        }
     }
 
     @Override
@@ -194,6 +195,10 @@ public class ScrSongOne extends InputAdapter implements Screen {
     public boolean keyDown(int keycode) {
         if (keycode == Input.Keys.ESCAPE) {
             isExit = true;
+        } else if (keycode == Input.Keys.SPACE) {
+            pause = true;
+        } else if (keycode == Input.Keys.SPACE && pause) {
+            pause = false;
         }
         return false;
     }

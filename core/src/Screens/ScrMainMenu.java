@@ -16,7 +16,7 @@ public class ScrMainMenu extends InputAdapter implements Screen {
     private SpriteBatch batch;
     private boolean isSong, isExit;
     private BitmapFont font;
-    private String SongChoice = "";
+    private String SongChoice = "Song One";
 
     public ScrMainMenu(GamGame1 _game) {
         game = _game;
@@ -42,21 +42,19 @@ public class ScrMainMenu extends InputAdapter implements Screen {
         font.draw(batch, "Press 3 to select Song Three", Gdx.graphics.getWidth() / 2, 50);
         font.draw(batch, SongChoice, Gdx.graphics.getWidth() / 2, 200);
         batch.end();
-        if (isSong /*&& SongChoice.equals("Song One")*/) {
+        if (isSong && SongChoice.equals("Song One")) {
             game.nScreen = 1;
             game.updateState();
             dispose();
-        } //        } else if(isSong && SongChoice.equals("Song Two")) {
-        //            game.nScreen = other number;
-        //            game.updateState();
-        //            dispose();
-        //        } else if(isSong && SongChoice.equals("Song Three")) {
-        //            game.nScreen = other number;
-        //            game.updateState();
-        //            dispose();
-        //        }
-        else if (isExit) {
-            System.out.println("gaem sukz");
+        } else if (isSong && SongChoice.equals("Song Two")) {
+            game.nScreen = 3;
+            game.updateState();
+            dispose();
+        } else if (isSong && SongChoice.equals("Song Three")) {
+            game.nScreen = 4;
+            game.updateState();
+            dispose();
+        } else if (isExit) {
             Gdx.app.exit();
             dispose();
         }
